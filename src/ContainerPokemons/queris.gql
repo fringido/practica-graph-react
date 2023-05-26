@@ -1,0 +1,17 @@
+query getPokemons($first: Int!) {
+ pokemons(first: $first) {
+      id
+      number
+      name
+      image
+      types
+    }
+    
+}
+
+
+# query Pokemon($name:String){
+# 	pokemon(name:$name){
+		
+# 	}
+# }
