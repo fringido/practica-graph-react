@@ -1,16 +1,17 @@
-import React from 'react';
-import { GetPokemonsLazyQueryHookResult, Pokemon } from '../../gql/graphql';
+import React from 'react'
+import {  Pokemon } from '../../gql/graphql'
 
-
-
-const CardPokemon: React.FC<GetPokemonsLazyQueryHookResult> = ({ pokemon }) => {
+const CardPokemon = (props: {
+  pokemon: Pokemon
+}) => {
+  const {pokemon} = props
   return (
     <div>
-      <h2>{pokemon.name}</h2>
-      <img src={pokemon.image || ''} alt={pokemon.name || ''} />
-      <p>{pokemon.types}</p>
+      <h3>{pokemon.name}</h3>
+      <img src={String(pokemon.image)} alt={String(pokemon.name)} />
+      <p>{pokemon.maxCP}</p>
     </div>
-  );
-};
+  )
+}
 
-export  {CardPokemon};
+export  {CardPokemon}
