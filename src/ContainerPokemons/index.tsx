@@ -1,23 +1,34 @@
-import React from 'react'
-import {  useGetPokemonsQuery } from '../gql/graphql';
-import { Loading } from '../Loading';
-import { CardPokemon } from './CardPokemon/CardPokemon';
+import React from "react";
+import { Loading } from "../Loading";
+import { CardPokemon } from "./CardPokemon/CardPokemon";
+import { useGetPokemonsQuery } from "../generated/graphql";
+import "./styles.scss";
+import { Search } from "../Search";
 
-function ContainerPokemons() {
-   const { data, loading, error } = useGetPokemonsQuery({
-     variables: {
-        first: 10
-     },
-   });
+const ContainerPokemons: React.FC = () => {
+	const { data, loading, error } = useGetPokemonsQuery({
+		variables: { first: 25 },
+	});
 
-  return(
-    <section className="container-pokemon">
-    {!!loading && <Loading />}
-    {!!error && <div>{error.message}</div>}
-    {!!data && data.pokemons?.map(pokemon => <CardPokemon key={pokemon?.id || ''} pokemon={pokemon } />)}
-  </section>
-  )
-  
-}
+	if (loading) {
+		return <Loading />;
+	}
 
-export {ContainerPokemons}
+	if (error) {
+		return <div>Error: {error.message}</div>;
+	}
+
+	return (
+		<section className="pokemon-container-lista">
+<Search/>
+			<div className="pokemon-list">
+				{!!data &&
+					data?.pokemons?.map((pokemon, i) => (
+						<CardPokemon className='card-pokemon' pokemon={pokemon} key={`key-${i}`} />
+					))}
+			</div>
+		</section>
+	);
+};
+
+export { ContainerPokemons };

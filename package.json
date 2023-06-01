@@ -18,9 +18,13 @@
     "react-router-dom": "^6.11.2"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "4.0.0",
-    "@graphql-codegen/client-preset": "4.0.0",
+    "@graphql-codegen/cli": "^4.0.0",
+    "@graphql-codegen/client-preset": "^4.0.0",
     "@graphql-codegen/introspection": "4.0.0",
+    "@graphql-codegen/plugin-helpers": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.0.0",
+    "@graphql-codegen/typescript-graphql-request": "^5.0.0",
+    "@graphql-codegen/typescript-operations": "^4.0.0",
     "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
@@ -33,6 +37,7 @@
     "sass": "^1.62.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4",
-    "vite": "^4.3.2"
+    "vite": "^4.3.2",
+    "vite-plugin-graphql-codegen": "^3.2.2"
   }
 }

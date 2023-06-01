@@ -1,23 +1,24 @@
+import { Types } from '@graphql-codegen/plugin-helpers';
+import { ApolloReactHooksPluginConfig } from 'apollo-react-hooks';
+import { GraphQLRequestPluginConfig } from 'typescript-graphql-request';
 
-import type { CodegenConfig } from '@graphql-codegen/cli';
-
-const config: CodegenConfig = {
-  overwrite: true,
-  schema: "https://graphql-pokemon2.vercel.app",
-  documents: "src/**/*.gql",
+const config: Types.Config = {
+  schema: 'https://graphql-pokemon2.vercel.app/',
+  documents: 'src/**/*.gql',
   generates: {
-    "src/gql/": {
-      preset: "client",
-      plugins: [
-        'typescript',
-        'typescript-operations',
-        'typescript-react-apollo',
-      ],
+    'src/generated/graphql.tsx': {
+      plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
+      config: {
+        withHooks: true,
+      } as ApolloReactHooksPluginConfig,
     },
-    "./graphql.schema.json": {
-      plugins: ["introspection"]
-    }
-  }
+    'src/generated/graphql-request.ts': {
+      plugins: ['typescript', 'typescript-operations', 'typescript-graphql-request'],
+      config: {
+        rawRequest: true,
+      } as GraphQLRequestPluginConfig,
+    },
+  },
 };
 
 export default config;

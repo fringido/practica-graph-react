@@ -1,19 +1,21 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom"
-import './App.scss'
-import { ContainerPokemons } from './ContainerPokemons';
-import { InfoPokemon } from './ContainerPokemons/InfoPoquemon';
+import React from "react";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import "./App.scss";
+import { InfoPokemon } from "./ContainerPokemons/InfoPoquemon";
+import { ContainerPokemons } from "./ContainerPokemons";
 
-function App() {
-
+const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-            <Route path="/:pokemon" element={<InfoPokemon />} />
-      </Routes>
-    </BrowserRouter>
-  )
-}
+    <>
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<ContainerPokemons />} />
+          <Route path="/pokemon/:id" element={<InfoPokemon />} />
+          {/* <Route path="/*" element={<ErrorPage />} /> */}
+        </Routes>
+      </HashRouter>
+    </>
+  );
+};
 
-export default App
-
+export default App;

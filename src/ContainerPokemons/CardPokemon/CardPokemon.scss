@@ -1,0 +1,65 @@
+.card {
+  width: 190px;
+  height: 254px;
+  margin: 10px 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f5f5f5;
+  justify-content: space-evenly;
+  border-radius: 30px;
+  box-shadow: 6px 6px 6px #bebebe, -6px -6px 6px #ffffff;
+  transition: all 0.8s;
+}
+
+.card:hover{
+  transform: scale(1.05);
+}
+
+.card .img {
+  padding      : .5rem;
+  height       : 35%;
+  margin-top   : 1em;
+  aspect-ratio : 1;
+  border-radius: 30%;
+  background   : #fefefe;
+  margin-bottom: 0.4em;
+  box-shadow   : -5px -5px 8px rgba(255, 255, 255, 0.4784313725), 5px 5px 8px rgba(169, 169, 170, 0.4784313725);
+}
+
+.card .info {
+  text-align             : center;
+  margin-top             : 0.4em;
+  background             : linear-gradient(120deg, rgba(0, 194, 255, 1) 0%, rgba(0, 86, 255, 1) 100%);
+  background-clip        : border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.container-tipo {
+  display: flex;
+}
+
+.card .info>span {
+  font-weight: bold;
+  font-size  : 1.2em;
+}
+
+.card .number {
+  display: flexbox;
+}
+
+.card a {
+  margin         : 1em 0;
+  color          : #fff;
+  text-decoration: none;
+  background     : linear-gradient(90deg, rgba(0, 194, 255, 1) 0%, rgba(0, 86, 255, 1) 100%);
+  padding        : .5em 2em;
+  border-radius  : 0.7em;
+  box-shadow: 2px 2px 3px #bebebe, -2px -2px 3px #ffffff;
+}
+
+.card a:active {
+  box-shadow: inset 3px 3px 3px #0056ff,
+    inset -3px -3px 3px #00c2ff;
+}
