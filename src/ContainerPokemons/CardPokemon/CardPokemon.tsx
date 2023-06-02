@@ -19,6 +19,7 @@ const CardPokemon: React.FC<CardPokemonProps> = ({ pokemon }) => {
 				src={String(pokemon.image)}
 				alt={String(pokemon.name)}
 			/>
+			
 			<div className="info">
 				<span>{pokemon.name}</span>
 				<div className="number">#{pokemon.number}</div>
