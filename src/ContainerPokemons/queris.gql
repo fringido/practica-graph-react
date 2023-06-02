@@ -8,3 +8,27 @@ query GetPokemons($first: Int!) {
     }
     
 }
+
+query GetPokemon($name: String){
+  pokemon( name: $name){
+    id
+    number
+    name
+    weight{
+      minimum
+      maximum
+    }
+    height{
+      minimum
+      maximum
+    }
+    classification
+    types
+    resistant
+    weaknesses
+    fleeRate
+    maxCP
+    maxHP
+    image
+  }
+}

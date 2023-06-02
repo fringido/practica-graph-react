@@ -9,7 +9,7 @@ const ContainerPokemons: React.FC = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 
 	const { data, loading, error } = useGetPokemonsQuery({
-		variables: { first: 25 },
+		variables: { first: 100 },
 	});
 	
 	if (loading) {

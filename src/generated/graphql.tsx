@@ -118,6 +118,13 @@ export type GetPokemonsQueryVariables = Exact<{
 
 export type GetPokemonsQuery = { __typename?: 'Query', pokemons?: Array<{ __typename?: 'Pokemon', id: string, number?: string | null, name?: string | null, image?: string | null, types?: Array<string | null> | null } | null> | null };
 
+export type GetPokemonQueryVariables = Exact<{
+  name?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetPokemonQuery = { __typename?: 'Query', pokemon?: { __typename?: 'Pokemon', id: string, number?: string | null, name?: string | null, classification?: string | null, types?: Array<string | null> | null, resistant?: Array<string | null> | null, weaknesses?: Array<string | null> | null, fleeRate?: number | null, maxCP?: number | null, maxHP?: number | null, image?: string | null, weight?: { __typename?: 'PokemonDimension', minimum?: string | null, maximum?: string | null } | null, height?: { __typename?: 'PokemonDimension', minimum?: string | null, maximum?: string | null } | null } | null };
+
 
 export const GetPokemonsDocument = gql`
     query GetPokemons($first: Int!) {
@@ -158,3 +165,56 @@ export function useGetPokemonsLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type GetPokemonsQueryHookResult = ReturnType<typeof useGetPokemonsQuery>;
 export type GetPokemonsLazyQueryHookResult = ReturnType<typeof useGetPokemonsLazyQuery>;
 export type GetPokemonsQueryResult = Apollo.QueryResult<GetPokemonsQuery, GetPokemonsQueryVariables>;
+export const GetPokemonDocument = gql`
+    query GetPokemon($name: String) {
+  pokemon(name: $name) {
+    id
+    number
+    name
+    weight {
+      minimum
+      maximum
+    }
+    height {
+      minimum
+      maximum
+    }
+    classification
+    types
+    resistant
+    weaknesses
+    fleeRate
+    maxCP
+    maxHP
+    image
+  }
+}
+    `;
+
+/**
+ * __useGetPokemonQuery__
+ *
+ * To run a query within a React component, call `useGetPokemonQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPokemonQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPokemonQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useGetPokemonQuery(baseOptions?: Apollo.QueryHookOptions<GetPokemonQuery, GetPokemonQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPokemonQuery, GetPokemonQueryVariables>(GetPokemonDocument, options);
+      }
+export function useGetPokemonLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPokemonQuery, GetPokemonQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPokemonQuery, GetPokemonQueryVariables>(GetPokemonDocument, options);
+        }
+export type GetPokemonQueryHookResult = ReturnType<typeof useGetPokemonQuery>;
+export type GetPokemonLazyQueryHookResult = ReturnType<typeof useGetPokemonLazyQuery>;
+export type GetPokemonQueryResult = Apollo.QueryResult<GetPokemonQuery, GetPokemonQueryVariables>;

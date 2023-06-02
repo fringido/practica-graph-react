@@ -119,6 +119,13 @@ export type GetPokemonsQueryVariables = Exact<{
 
 export type GetPokemonsQuery = { __typename?: 'Query', pokemons?: Array<{ __typename?: 'Pokemon', id: string, number?: string | null, name?: string | null, image?: string | null, types?: Array<string | null> | null } | null> | null };
 
+export type GetPokemonQueryVariables = Exact<{
+  name?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetPokemonQuery = { __typename?: 'Query', pokemon?: { __typename?: 'Pokemon', id: string, number?: string | null, name?: string | null, classification?: string | null, types?: Array<string | null> | null, resistant?: Array<string | null> | null, weaknesses?: Array<string | null> | null, fleeRate?: number | null, maxCP?: number | null, maxHP?: number | null, image?: string | null, weight?: { __typename?: 'PokemonDimension', minimum?: string | null, maximum?: string | null } | null, height?: { __typename?: 'PokemonDimension', minimum?: string | null, maximum?: string | null } | null } | null };
+
 
 export const GetPokemonsDocument = gql`
     query GetPokemons($first: Int!) {
@@ -131,16 +138,45 @@ export const GetPokemonsDocument = gql`
   }
 }
     `;
+export const GetPokemonDocument = gql`
+    query GetPokemon($name: String) {
+  pokemon(name: $name) {
+    id
+    number
+    name
+    weight {
+      minimum
+      maximum
+    }
+    height {
+      minimum
+      maximum
+    }
+    classification
+    types
+    resistant
+    weaknesses
+    fleeRate
+    maxCP
+    maxHP
+    image
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
 
 const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) => action();
 const GetPokemonsDocumentString = print(GetPokemonsDocument);
+const GetPokemonDocumentString = print(GetPokemonDocument);
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
     GetPokemons(variables: GetPokemonsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetPokemonsQuery; extensions?: any; headers: Dom.Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetPokemonsQuery>(GetPokemonsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetPokemons', 'query');
+    },
+    GetPokemon(variables?: GetPokemonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetPokemonQuery; extensions?: any; headers: Dom.Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetPokemonQuery>(GetPokemonDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetPokemon', 'query');
     }
   };
 }
