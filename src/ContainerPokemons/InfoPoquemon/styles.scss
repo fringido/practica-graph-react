@@ -24,10 +24,12 @@
 }
 
 img.info-image {
-  width: inherit;
-  /* height: 14vh; */
-  border-radius: 35%;
-  height: inherit;
+  padding: 0.5rem;
+  height: 35%;
+  aspect-ratio: 1;
+  border-radius: 30%;
+  background: #fefefe;
+  box-shadow: -5px -5px 8px rgba(255, 255, 255, 0.4784313725), 5px 5px 8px rgba(169, 169, 170, 0.478431)
 }
 
 .container-left_pokemon_info {

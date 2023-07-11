@@ -7,15 +7,18 @@ const config: Types.Config = {
   documents: 'src/**/*.gql',
   generates: {
     'src/generated/graphql.tsx': {
-      plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
+      plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo' ],
       config: {
         withHooks: true,
+        flattenGeneratedTypes: true,
+        flattenGeneratedTypesIncludeFragments: true
       } as ApolloReactHooksPluginConfig,
     },
     'src/generated/graphql-request.ts': {
-      plugins: ['typescript', 'typescript-operations', 'typescript-graphql-request'],
+      plugins: ['typescript', 'typescript-operations', 'typescript-graphql-request' ],
       config: {
         rawRequest: true,
+
       } as GraphQLRequestPluginConfig,
     },
   },

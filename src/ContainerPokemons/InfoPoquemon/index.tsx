@@ -3,8 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useGetPokemonQuery } from "../../generated/graphql";
 import "./styles.scss";
 import CardColor from "../CardColorType";
+import { Loading } from "../../Loading";
 
-function InfoPokemon() {
+function InfoPokemon():JSX.Element {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const returnBlock = () => {
@@ -45,6 +46,9 @@ function InfoPokemon() {
 			</div>
 		);
 	}
+	
+		return <Loading/>
+
 }
 
 export { InfoPokemon };

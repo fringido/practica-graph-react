@@ -19,9 +19,11 @@ const ContainerPokemons: React.FC = () => {
 	if (error) {
 		return <div>Error: {error.message}</div>;
 	}
-	const filteredPokemon = data?.pokemons?.filter((pokemon) => pokemon?.name.toLowerCase().includes(searchTerm.toLowerCase()));
+	if(data){
+		const filteredPokemon = data?.pokemons?.filter((pokemon) => pokemon?.name?.toLowerCase().includes(searchTerm.toLowerCase())) || null
+		return (
+	
 
-	return (
 		<section className="pokemon-container-lista">
 			<Search setSearchTerm={setSearchTerm} />
 			<div className="pokemon-list">
@@ -36,6 +38,7 @@ const ContainerPokemons: React.FC = () => {
 			</div>
 		</section>
 	);
-};
+}
+}
 
 export { ContainerPokemons };
