@@ -1,6 +1,4 @@
 import { Types } from '@graphql-codegen/plugin-helpers';
-import { ApolloReactHooksPluginConfig } from 'apollo-react-hooks';
-import { GraphQLRequestPluginConfig } from 'typescript-graphql-request';
 
 const config: Types.Config = {
   schema: 'https://graphql-pokemon2.vercel.app/',
@@ -12,15 +10,9 @@ const config: Types.Config = {
         withHooks: true,
         flattenGeneratedTypes: true,
         flattenGeneratedTypesIncludeFragments: true
-      } as ApolloReactHooksPluginConfig,
+      } ,
     },
-    'src/generated/graphql-request.ts': {
-      plugins: ['typescript', 'typescript-operations', 'typescript-graphql-request' ],
-      config: {
-        rawRequest: true,
-
-      } as GraphQLRequestPluginConfig,
-    },
+    
   },
 };
 
