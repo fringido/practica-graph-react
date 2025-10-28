@@ -1,4 +1,4 @@
 {
-  "name": "Pokemon API",
-  "schemaPath": "/graphql.schema.json"
+  "schema": "https://graphql-pokeapi.graphcdn.app/",
+  "documents": "src/**/*.graphql"
 }

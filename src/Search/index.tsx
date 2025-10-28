@@ -14,8 +14,7 @@ const Search: React.FC<SearchProps> = ({ setSearchTerm }) => {
 	return (
 		<div className="group">
 			<BuscarSVG className='icon' />
-			<input placeholder="Search" type="search" className="input" onChange={handleSearch}
-/>
+			<input placeholder="Search" type="search" className="input" onChange={handleSearch}/>
 		</div>
 	);
 }

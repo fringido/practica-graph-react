@@ -3,6 +3,7 @@ import { HashRouter, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import { InfoPokemon } from "./ContainerPokemons/InfoPoquemon";
 import { ContainerPokemons } from "./ContainerPokemons";
+import ErrorPage from "./ErrorPage";
 
 const App: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<ContainerPokemons />} />
           <Route path="/pokemon/:id" element={<InfoPokemon />} />
-          {/* <Route path="/*" element={<ErrorPage />} /> */}
+          <Route path="/*" element={<ErrorPage />} />
         </Routes>
       </HashRouter>
     </>

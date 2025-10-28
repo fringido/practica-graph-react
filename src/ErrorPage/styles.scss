@@ -1,0 +1,45 @@
+.error-page {
+    min-height     : 100vh;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    background     : linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    color          : #0f172a;
+    padding        : 2rem;
+}
+
+.error-page__card {
+    text-align   : center;
+    background   : white;
+    border-radius: 12px;
+    padding      : 2.5rem 3rem;
+    box-shadow   : 0 6px 20px rgba(2, 6, 23, 0.08);
+    max-width    : 420px;
+    width        : 100%;
+}
+
+.error-page__title {
+    font-size  : 6rem;
+    margin     : 0;
+    line-height: 1;
+}
+
+.error-page__desc {
+    margin   : 0.5rem 0 1.25rem 0;
+    font-size: 1.125rem;
+    color    : #334155;
+}
+
+.error-page__link {
+    display        : inline-block;
+    background     : #0ea5e9;
+    color          : white;
+    padding        : 0.6rem 1.1rem;
+    border-radius  : 8px;
+    text-decoration: none;
+    font-weight    : 600;
+}
+
+.error-page__link:hover {
+    background: #0284c7;
+}

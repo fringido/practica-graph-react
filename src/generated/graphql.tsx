@@ -15,125 +15,280 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  JSON: { input: any; output: any; }
+  JSONObject: { input: any; output: any; }
+  Upload: { input: any; output: any; }
 };
 
-/** Represents a Pokémon's attack types */
-export type Attack = {
-  __typename?: 'Attack';
-  /** The damage of this Pokémon attack */
-  damage?: Maybe<Scalars['Int']['output']>;
-  /** The name of this Pokémon attack */
+export type Ability = {
+  __typename?: 'Ability';
+  ability?: Maybe<BaseName>;
+  is_hidden?: Maybe<Scalars['Boolean']['output']>;
+  slot?: Maybe<Scalars['Int']['output']>;
+};
+
+export type BaseList = {
+  __typename?: 'BaseList';
+  count?: Maybe<Scalars['Int']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
+  next?: Maybe<Scalars['String']['output']>;
+  previous?: Maybe<Scalars['String']['output']>;
+  results?: Maybe<Array<Maybe<BaseName>>>;
+  status?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type BaseName = {
+  __typename?: 'BaseName';
+  id?: Maybe<Scalars['Int']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-  /** The type of this Pokémon attack */
-  type?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
 };
 
-/** Represents a Pokémon */
+export type BaseResponse = {
+  __typename?: 'BaseResponse';
+  message?: Maybe<Scalars['String']['output']>;
+  params?: Maybe<Scalars['JSON']['output']>;
+  response?: Maybe<Scalars['JSON']['output']>;
+  status?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export enum CacheControlScope {
+  Private = 'PRIVATE',
+  Public = 'PUBLIC'
+}
+
+export type GameIndex = {
+  __typename?: 'GameIndex';
+  game_index?: Maybe<Scalars['Int']['output']>;
+  version?: Maybe<BaseName>;
+};
+
+export type HeldItem = {
+  __typename?: 'HeldItem';
+  item?: Maybe<BaseName>;
+  version_details?: Maybe<Array<Maybe<VersionDetail>>>;
+};
+
+export type Move = {
+  __typename?: 'Move';
+  move?: Maybe<BaseName>;
+  version_group_details?: Maybe<Array<Maybe<VersionGroupDetail>>>;
+};
+
 export type Pokemon = {
   __typename?: 'Pokemon';
-  /** The attacks of this Pokémon */
-  attacks?: Maybe<PokemonAttack>;
-  /** The classification of this Pokémon */
-  classification?: Maybe<Scalars['String']['output']>;
-  /** The evolution requirements of this Pokémon */
-  evolutionRequirements?: Maybe<PokemonEvolutionRequirement>;
-  /** The evolutions of this Pokémon */
-  evolutions?: Maybe<Array<Maybe<Pokemon>>>;
-  fleeRate?: Maybe<Scalars['Float']['output']>;
-  /** The minimum and maximum weight of this Pokémon */
-  height?: Maybe<PokemonDimension>;
-  /** The ID of an object */
-  id: Scalars['ID']['output'];
+  abilities?: Maybe<Array<Maybe<Ability>>>;
+  base_experience?: Maybe<Scalars['Int']['output']>;
+  forms?: Maybe<Array<Maybe<BaseName>>>;
+  game_indices?: Maybe<Array<Maybe<GameIndex>>>;
+  height?: Maybe<Scalars['Int']['output']>;
+  held_items?: Maybe<Array<Maybe<HeldItem>>>;
+  id?: Maybe<Scalars['Int']['output']>;
+  is_default?: Maybe<Scalars['Boolean']['output']>;
+  location_area_encounters?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
+  moves?: Maybe<Array<Maybe<Move>>>;
+  name?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  species?: Maybe<BaseName>;
+  sprites?: Maybe<Sprite>;
+  stats?: Maybe<Array<Maybe<Stat>>>;
+  status?: Maybe<Scalars['Boolean']['output']>;
+  types?: Maybe<Array<Maybe<Type>>>;
+  weight?: Maybe<Scalars['Int']['output']>;
+};
+
+export type PokemonItem = {
+  __typename?: 'PokemonItem';
+  artwork?: Maybe<Scalars['String']['output']>;
+  dreamworld?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
   image?: Maybe<Scalars['String']['output']>;
-  /** The maximum CP of this Pokémon */
-  maxCP?: Maybe<Scalars['Int']['output']>;
-  /** The maximum HP of this Pokémon */
-  maxHP?: Maybe<Scalars['Int']['output']>;
-  /** The name of this Pokémon */
   name?: Maybe<Scalars['String']['output']>;
-  /** The identifier of this Pokémon */
-  number?: Maybe<Scalars['String']['output']>;
-  /** The type(s) of Pokémons that this Pokémon is resistant to */
-  resistant?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** The type(s) of this Pokémon */
-  types?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** The type(s) of Pokémons that this Pokémon weak to */
-  weaknesses?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** The minimum and maximum weight of this Pokémon */
-  weight?: Maybe<PokemonDimension>;
+  url?: Maybe<Scalars['String']['output']>;
 };
 
-/** Represents a Pokémon's attack types */
-export type PokemonAttack = {
-  __typename?: 'PokemonAttack';
-  /** The fast attacks of this Pokémon */
-  fast?: Maybe<Array<Maybe<Attack>>>;
-  /** The special attacks of this Pokémon */
-  special?: Maybe<Array<Maybe<Attack>>>;
+export type PokemonList = {
+  __typename?: 'PokemonList';
+  count?: Maybe<Scalars['Int']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
+  next?: Maybe<Scalars['String']['output']>;
+  nextOffset?: Maybe<Scalars['Int']['output']>;
+  params?: Maybe<Scalars['JSON']['output']>;
+  prevOffset?: Maybe<Scalars['Int']['output']>;
+  previous?: Maybe<Scalars['String']['output']>;
+  results?: Maybe<Array<Maybe<PokemonItem>>>;
+  status?: Maybe<Scalars['Boolean']['output']>;
 };
 
-/** Represents a Pokémon's dimensions */
-export type PokemonDimension = {
-  __typename?: 'PokemonDimension';
-  /** The maximum value of this dimension */
-  maximum?: Maybe<Scalars['String']['output']>;
-  /** The minimum value of this dimension */
-  minimum?: Maybe<Scalars['String']['output']>;
-};
-
-/** Represents a Pokémon's requirement to evolve */
-export type PokemonEvolutionRequirement = {
-  __typename?: 'PokemonEvolutionRequirement';
-  /** The amount of candy to evolve */
-  amount?: Maybe<Scalars['Int']['output']>;
-  /** The name of the candy to evolve */
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-/** Query any Pokémon by number or name */
 export type Query = {
   __typename?: 'Query';
+  abilities?: Maybe<BaseList>;
+  ability?: Maybe<BaseResponse>;
+  berries?: Maybe<BaseList>;
+  berry?: Maybe<BaseResponse>;
+  eggGroup?: Maybe<BaseResponse>;
+  eggGroups?: Maybe<BaseList>;
+  encounterMethod?: Maybe<BaseResponse>;
+  encounterMethods?: Maybe<BaseList>;
+  evolutionChain?: Maybe<BaseResponse>;
+  evolutionChains?: Maybe<BaseList>;
+  evolutionTrigger?: Maybe<BaseResponse>;
+  evolutionTriggers?: Maybe<BaseList>;
+  gender?: Maybe<BaseResponse>;
+  genders?: Maybe<BaseList>;
+  growthRate?: Maybe<BaseResponse>;
+  growthRates?: Maybe<BaseList>;
+  location?: Maybe<BaseResponse>;
+  locations?: Maybe<BaseList>;
+  move?: Maybe<BaseResponse>;
+  moves?: Maybe<BaseList>;
+  nature?: Maybe<BaseResponse>;
+  natures?: Maybe<BaseList>;
   pokemon?: Maybe<Pokemon>;
-  pokemons?: Maybe<Array<Maybe<Pokemon>>>;
-  query?: Maybe<Query>;
+  pokemons?: Maybe<PokemonList>;
+  region?: Maybe<BaseResponse>;
+  regions?: Maybe<BaseList>;
+  species?: Maybe<BaseList>;
+  types?: Maybe<BaseList>;
 };
 
 
-/** Query any Pokémon by number or name */
+export type QueryAbilityArgs = {
+  ability: Scalars['String']['input'];
+};
+
+
+export type QueryBerryArgs = {
+  berry: Scalars['String']['input'];
+};
+
+
+export type QueryEggGroupArgs = {
+  eggGroup: Scalars['String']['input'];
+};
+
+
+export type QueryEncounterMethodArgs = {
+  encounterMethod: Scalars['String']['input'];
+};
+
+
+export type QueryEvolutionChainArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+export type QueryEvolutionTriggerArgs = {
+  name: Scalars['String']['input'];
+};
+
+
+export type QueryGenderArgs = {
+  gender: Scalars['String']['input'];
+};
+
+
+export type QueryGrowthRateArgs = {
+  growthRate: Scalars['String']['input'];
+};
+
+
+export type QueryLocationArgs = {
+  location: Scalars['String']['input'];
+};
+
+
+export type QueryMoveArgs = {
+  move: Scalars['String']['input'];
+};
+
+
+export type QueryNatureArgs = {
+  nature: Scalars['String']['input'];
+};
+
+
 export type QueryPokemonArgs = {
-  id?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 };
 
 
-/** Query any Pokémon by number or name */
 export type QueryPokemonsArgs = {
-  first: Scalars['Int']['input'];
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type QueryRegionArgs = {
+  region: Scalars['String']['input'];
+};
+
+export type Sprite = {
+  __typename?: 'Sprite';
+  back_default?: Maybe<Scalars['String']['output']>;
+  back_female?: Maybe<Scalars['String']['output']>;
+  back_shiny?: Maybe<Scalars['String']['output']>;
+  back_shiny_female?: Maybe<Scalars['String']['output']>;
+  front_default?: Maybe<Scalars['String']['output']>;
+  front_female?: Maybe<Scalars['String']['output']>;
+  front_shiny?: Maybe<Scalars['String']['output']>;
+  front_shiny_female?: Maybe<Scalars['String']['output']>;
+};
+
+export type Stat = {
+  __typename?: 'Stat';
+  base_stat?: Maybe<Scalars['Int']['output']>;
+  effort?: Maybe<Scalars['Int']['output']>;
+  stat?: Maybe<BaseName>;
+};
+
+export type Type = {
+  __typename?: 'Type';
+  slot?: Maybe<Scalars['Int']['output']>;
+  type?: Maybe<BaseName>;
+};
+
+export type VersionDetail = {
+  __typename?: 'VersionDetail';
+  rarity?: Maybe<Scalars['Int']['output']>;
+  version?: Maybe<BaseName>;
+};
+
+export type VersionGroupDetail = {
+  __typename?: 'VersionGroupDetail';
+  level_learned_at?: Maybe<Scalars['Int']['output']>;
+  move_learn_method?: Maybe<BaseName>;
+  version_group?: Maybe<BaseName>;
 };
 
 export type GetPokemonsQueryVariables = Exact<{
-  first: Scalars['Int']['input'];
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type GetPokemonsQuery = { __typename?: 'Query', pokemons?: Array<{ __typename?: 'Pokemon', id: string, number?: string | null, name?: string | null, image?: string | null, types?: Array<string | null> | null } | null> | null };
+export type GetPokemonsQuery = { __typename?: 'Query', pokemons?: { __typename?: 'PokemonList', count?: number | null, next?: string | null, previous?: string | null, results?: Array<{ __typename?: 'PokemonItem', id?: number | null, name?: string | null, image?: string | null } | null> | null } | null };
 
 export type GetPokemonQueryVariables = Exact<{
-  name?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 }>;
 
 
-export type GetPokemonQuery = { __typename?: 'Query', pokemon?: { __typename?: 'Pokemon', id: string, number?: string | null, name?: string | null, classification?: string | null, types?: Array<string | null> | null, resistant?: Array<string | null> | null, weaknesses?: Array<string | null> | null, fleeRate?: number | null, maxCP?: number | null, maxHP?: number | null, image?: string | null, weight?: { __typename?: 'PokemonDimension', minimum?: string | null, maximum?: string | null } | null, height?: { __typename?: 'PokemonDimension', minimum?: string | null, maximum?: string | null } | null } | null };
+export type GetPokemonQuery = { __typename?: 'Query', pokemon?: { __typename?: 'Pokemon', id?: number | null, name?: string | null, height?: number | null, weight?: number | null, abilities?: Array<{ __typename?: 'Ability', ability?: { __typename?: 'BaseName', name?: string | null } | null } | null> | null, types?: Array<{ __typename?: 'Type', type?: { __typename?: 'BaseName', name?: string | null } | null } | null> | null, stats?: Array<{ __typename?: 'Stat', base_stat?: number | null, stat?: { __typename?: 'BaseName', name?: string | null } | null } | null> | null, sprites?: { __typename?: 'Sprite', front_default?: string | null, back_default?: string | null } | null } | null };
 
 
 export const GetPokemonsDocument = gql`
-    query GetPokemons($first: Int!) {
-  pokemons(first: $first) {
-    id
-    number
-    name
-    image
-    types
+    query GetPokemons($limit: Int, $offset: Int) {
+  pokemons(limit: $limit, offset: $offset) {
+    count
+    next
+    previous
+    results {
+      id
+      name
+      image
+    }
   }
 }
     `;
@@ -150,11 +305,12 @@ export const GetPokemonsDocument = gql`
  * @example
  * const { data, loading, error } = useGetPokemonsQuery({
  *   variables: {
- *      first: // value for 'first'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
  *   },
  * });
  */
-export function useGetPokemonsQuery(baseOptions: Apollo.QueryHookOptions<GetPokemonsQuery, GetPokemonsQueryVariables>) {
+export function useGetPokemonsQuery(baseOptions?: Apollo.QueryHookOptions<GetPokemonsQuery, GetPokemonsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GetPokemonsQuery, GetPokemonsQueryVariables>(GetPokemonsDocument, options);
       }
@@ -166,27 +322,32 @@ export type GetPokemonsQueryHookResult = ReturnType<typeof useGetPokemonsQuery>;
 export type GetPokemonsLazyQueryHookResult = ReturnType<typeof useGetPokemonsLazyQuery>;
 export type GetPokemonsQueryResult = Apollo.QueryResult<GetPokemonsQuery, GetPokemonsQueryVariables>;
 export const GetPokemonDocument = gql`
-    query GetPokemon($name: String) {
+    query GetPokemon($name: String!) {
   pokemon(name: $name) {
     id
-    number
     name
-    weight {
-      minimum
-      maximum
+    height
+    weight
+    abilities {
+      ability {
+        name
+      }
     }
-    height {
-      minimum
-      maximum
+    types {
+      type {
+        name
+      }
     }
-    classification
-    types
-    resistant
-    weaknesses
-    fleeRate
-    maxCP
-    maxHP
-    image
+    stats {
+      base_stat
+      stat {
+        name
+      }
+    }
+    sprites {
+      front_default
+      back_default
+    }
   }
 }
     `;
@@ -207,7 +368,7 @@ export const GetPokemonDocument = gql`
  *   },
  * });
  */
-export function useGetPokemonQuery(baseOptions?: Apollo.QueryHookOptions<GetPokemonQuery, GetPokemonQueryVariables>) {
+export function useGetPokemonQuery(baseOptions: Apollo.QueryHookOptions<GetPokemonQuery, GetPokemonQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GetPokemonQuery, GetPokemonQueryVariables>(GetPokemonDocument, options);
       }

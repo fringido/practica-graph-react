@@ -1,34 +1,41 @@
-query GetPokemons($first: Int!) {
- pokemons(first: $first) {
+query GetPokemons($limit: Int, $offset: Int) {
+  pokemons(limit: $limit, offset: $offset) {
+    count
+    next
+    previous
+    results {
       id
-      number
       name
       image
-      types
     }
-    
+  }
 }
 
-query GetPokemon($name: String){
-  pokemon( name: $name){
+query GetPokemon($name: String!) {
+  pokemon(name: $name) {
     id
-    number
     name
-    weight{
-      minimum
-      maximum
+    height
+    weight
+    abilities {
+      ability {
+        name
+      }
     }
-    height{
-      minimum
-      maximum
+    types {
+      type {
+        name
+      }
     }
-    classification
-    types
-    resistant
-    weaknesses
-    fleeRate
-    maxCP
-    maxHP
-    image
+    stats {
+      base_stat
+      stat {
+        name
+      }
+    }
+    sprites {
+      front_default
+      back_default
+    }
   }
 }

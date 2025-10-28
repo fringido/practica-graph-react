@@ -1,7 +1,7 @@
 import { Types } from '@graphql-codegen/plugin-helpers';
 
 const config: Types.Config = {
-  schema: 'https://graphql-pokemon2.vercel.app/',
+  schema: 'https://graphql-pokeapi.graphcdn.app/',
   documents: 'src/**/*.gql',
   generates: {
     'src/generated/graphql.tsx': {

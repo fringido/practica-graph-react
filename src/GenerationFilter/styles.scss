@@ -1,0 +1,26 @@
+.generation-filter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.generation-button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 10px;
+    color: black;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+
+    &:hover {
+        box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6), inset -9px -9px 16px    rgba(255,255,255, 0.5);
+    }
+
+    &:active {
+        box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6), inset -9px -9px 16px    rgba(255,255,255, 0.5);
+    }
+}

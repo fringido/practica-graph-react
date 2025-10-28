@@ -1,28 +1,29 @@
-import React from 'react'
-import { getColorByType } from '../../Enums/PokemonType';
-import { Pokemon } from '../../generated/graphql';
+import React from "react";
+import { getColorByType } from "../../Enums/PokemonType";
+import { Pokemon } from "../../generated/graphql";
 
-interface CardColor{
+interface CardColor {
   children: any;
-  types: Pokemon['types'];
+  types: Pokemon["types"];
   nameClass: string;
 }
-const CardColor: React.FC<CardColor> = ({children, types, nameClass}) =>{
-
+const CardColor: React.FC<CardColor> = ({ children, types, nameClass }) => {
+  console.log(types);
   const getColorStyle = (): React.CSSProperties => {
     if (types?.length === 1) {
-      const color = getColorByType(types[0] || '');
+      const color = getColorByType(types[0]?.type?.name|| '');
       return { backgroundColor: color };
     } else if (types?.length === 2) {
-      const color1 = getColorByType(types[0] || "");
-      const color2 = getColorByType(types[1] || "");
+      
+      const color1 = getColorByType(types[0]?.type?.name || '');
+      const color2 = getColorByType(types[1]?.type?.name || '');
       return {
         background: `linear-gradient(to right, ${color1}, ${color2})`,
       };
     }
 
     // Si no hay tipos o hay más de 2 tipos, se utiliza un color predeterminado
-    return { backgroundColor: '#fff' };
+    return { backgroundColor: "#fff" };
   };
 
   const colorStyle = getColorStyle();
@@ -31,8 +32,7 @@ const CardColor: React.FC<CardColor> = ({children, types, nameClass}) =>{
     <div className={nameClass} style={colorStyle}>
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default CardColor
-
+export default CardColor;

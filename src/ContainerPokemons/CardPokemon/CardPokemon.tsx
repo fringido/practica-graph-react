@@ -1,25 +1,19 @@
 import React from "react";
 import { getColorByType } from "../../Enums/PokemonType";
 import "./CardPokemon.scss";
-import { getEmojiByType } from "../../Enums/EmojisTypePokemnon";
+
 
 interface CardPokemonProps {
-  pokemon: {
-    __typename?: "Pokemon";
-    id: string;
-    number?: string | null;
-    name?: string | null;
-    image?: string | null;
-    types?: Array<string | null> | null;
-} | null;
-className: string
+  pokemon: any;
+  className: string;
 }
 
 const CardPokemon: React.FC<CardPokemonProps> = ({ pokemon }) => {
   const color =
     (pokemon &&
       pokemon.types &&
-      getColorByType(`${pokemon?.types[0]} || ''`)) ||
+      pokemon.types.length > 0 &&
+      getColorByType(`${pokemon?.types?.[0]?.type?.name || ''}`)) ||
     "";
 
   return (
@@ -31,14 +25,9 @@ const CardPokemon: React.FC<CardPokemonProps> = ({ pokemon }) => {
       />
       <div className="info">
         <span>{pokemon?.name}</span>
-        <div className="number">#{pokemon?.number}</div>
+        <div className="number">#{pokemon?.id}</div>
       </div>
-      <div className="container-tipo">
-        Tipo:
-        {pokemon?.types?.map((typo, i) => (
-          <div key={i}> {getEmojiByType(typo || '')} </div>
-        ))}
-      </div>
+     
       <a
         style={{ color: color }}
         className="cta"

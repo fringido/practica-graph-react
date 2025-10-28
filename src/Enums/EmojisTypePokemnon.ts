@@ -4,28 +4,29 @@ type Emoji = {
 
 function getEmojiByType(type: string): string {
   const emojis: Emoji = {
-    Normal: "⚪️",
-    Fire: "🔥",
-    Water: "💧",
-    Electric: "⚡️",
-    Grass: "🌿",
-    Ice: "❄️",
-    Fighting: "🥊",
-    Poison: "☠️",
-    Ground: "⛰️",
-    Flying: "🦅",
-    Psychic: "🔮",
-    Bug: "🐛",
-    Rock: "🪨",
-    Ghost: "👻",
-    Dragon: "🐉",
-    Dark: "🌑",
-    Steel: "🔩",
-    Fairy: "🧚‍♀️",
+    normal: "⚪️",
+    fire: "🔥",
+    water: "💧",
+    electric: "⚡️",
+    grass: "🌿",
+    ice: "❄️",
+    fighting: "🥊",
+    poison: "☠️",
+    ground: "⛰️",
+    flying: "🦅",
+    psychic: "🔮",
+    bug: "🐛",
+    rock: "🪨",
+    ghost: "👻",
+    dragon: "🐉",
+    dark: "🌑",
+    steel: "🔩",
+    fairy: "🧚♀️",
   };
 
-  if (type in emojis) {
-    return emojis[type];
+  const normalizedType = type.toLowerCase();
+  if (normalizedType in emojis) {
+    return emojis[normalizedType];
   }
 
   return "❓"; // emoji para tipo desconocido
